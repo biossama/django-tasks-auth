@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Update{% endblock %}
+{% block content %}
+
+
+<div class="text-center mt-4">
+<h5 >Update your task</5>
+</div>
+<hr><br><br>
+<div class="container">
+<div class="bg-light p-5 rounded">
+<form method="post">
+
+	{% csrf_token %}
+	{{form|crispy}}
+	<button type="submit" class="btn btn-primary btn-sm">Submit</button>
+	<a class="btn btn-info btn-sm" href="{% url 'tasks:home' %}" >Return</a>
+
+</form>
+
+</div>
+</div>
+{% endblock %}
+

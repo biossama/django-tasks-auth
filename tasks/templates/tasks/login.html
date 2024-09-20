@@ -1,0 +1,25 @@
+{% extends 'tasks/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<body>
+<div class="container mt-5 shadow-md form-layout p-5 rounded-4 w-50 bg-light">
+{% for message in messages %}
+	<p><span style="width:50px">🚨</span>{{ message }} </p>
+{% endfor %}
+<form method="post">
+	{% csrf_token %}
+	{{form|crispy}}
+	<button type="submit" class="btn btn-primary mt-3 w-50 center" >Login</button>
+</form>
+</div>
+<div class="text-center">
+	<p>You haven't an account?</p>
+	<a href="{% url 'register' %}">Create an account</a> 
+</div>
+</body>
+{% endblock %}
+

@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Tasks{% endblock %}
+
+{% block content %}
+
+<div class="text-center mt-5">
+        <a  type="button" class="btn btn-primary btn-sm" href="{% url 'tasks:add-task' %}"><i class="fa fa-plus-square" aria-hidden="true"></i>&nbsp; Add New Task</a>&nbsp;
+</div>
+
+<div class="table-responsive">
+{% if todos %}
+<table class="table border-primary table-hover table-bordered mt-5 form-layout">
+<thead class="table table-dark">
+	<tr>
+	<th>Task</th>
+	<th>Status</th>
+	<th>Date</th>
+	<th>Action</th>
+	</tr>
+</thead>
+{% for todo in todos reversed %}
+<tbody>
+	<tr>
+	<td>{{todo.title|title}}</td>
+	<td>{% if todo.completed %}<span class="badge bg-success">Completed</span>{% else %}<span class="badge bg-danger">Not complet</span>{% endif %}</td>
+	<td>{{todo.created|date:"Y-m-d -  H:i"}}</td>
+	<td>
+		
+		<a  type="button" class="btn btn-primary btn-sm" href="{% url 'tasks:update-task' todo.id %}">Update&nbsp;&nbsp;<i class="fa fa-pencil-square" aria-hidden="true"></i></a>&nbsp;
+
+		<a type="button" class="btn btn-primary btn-sm" href="{% url 'tasks:remove-task' todo.id %}">Delete&nbsp;&nbsp;<i class="fa fa-trash" aria-hidden="true"></i></a>
+	</td>
+	</tr>
+</tbody>
+{% endfor %}
+</table>
+{% endif %}
+</div>
+
+{% endblock %}
+

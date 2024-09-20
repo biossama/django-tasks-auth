@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Register{% endblock %}
+{% block content %}
+<div class="container mt-5 bg-light rounded p-5 w-50 form-layout">
+<form method="post" action="{% url 'accounts:register-user' %}">
+	{% csrf_token %}
+	{{form|crispy}}
+	<div class="d-flex justify-content-center mt-4">
+		<button type="submit" class="btn btn-primary" >Register</button>
+	</div>
+</form>
+	<div class="text-center">
+		<p>Already have an account</p>
+		<a href="{% url 'accounts:login-user' %}">Login</a>
+	</div>
+</div>
+{% endblock %}
+

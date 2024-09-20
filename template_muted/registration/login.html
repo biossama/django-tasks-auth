@@ -1,0 +1,16 @@
+<!-- templates/registration/login.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Connexion</title>
+</head>
+<body>
+    <h2>Connexion</h2>
+    <form method="post" action="{% url 'accounts:login-user' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Se connecter</button>
+    </form>
+    <a href="{% url 'accounts:password_reset' %}">Mot de passe oublié ?</a>
+</body>
+</html>
